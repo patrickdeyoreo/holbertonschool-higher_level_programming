@@ -1,0 +1,2 @@
+#!/bin/bash
+python - "${PYFILE}" <<<'import sys, py_compile; print("Compiling " + sys.argv[1]); py_compile.compile(sys.argv[1], cfile=sys.argv[1] + "c")'
