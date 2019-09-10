@@ -1,7 +1,7 @@
-#!/bin/bash
-python - "${PYFILE}" << EOF
-from sys import argv, stdout
+#!/usr/bin/python3
+from os import getenv
+from sys import stdout
 from py_compile import compile
-stdout.write(" ".join(("Compiling", argv[1], "...\n")))
-compile(argv[1], cfile=argv[1] + "c")
-EOF
+pyfile = getenv("PYFILE", "")
+stdout.write(" ".join(("Compiling", pyfile, "...\n")))
+compile(pyfile, cfile="{}c".format(pyfile))
