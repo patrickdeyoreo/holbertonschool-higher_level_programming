@@ -3,4 +3,10 @@
 
 def uppercase(s):
     """ Prints a string in uppercase (followed by a newline) """
-    print(s.translate({(c | 32): c for c in range(ord('A'), ord('Z') + 1)}))
+    while s:
+        if ord('a') <= ord(s[0]) <= ord('z'):
+            print('{:c}'.format(ord(s[0]) & ~0x20), end="")
+        else:
+            print(s[0], end="")
+        s = s[1:]
+    print()
