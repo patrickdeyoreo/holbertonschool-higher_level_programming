@@ -1,4 +1,2 @@
 #!/usr/bin/python3
-print('{}'.format('\n'.join(
-    map(' = '.join, zip(map(str, range(99)), map('{:#x}'.format, range(99))))
-)))
+print(*("{} = {:#x}".format(i, i) for i in range(100)), sep='\n')
