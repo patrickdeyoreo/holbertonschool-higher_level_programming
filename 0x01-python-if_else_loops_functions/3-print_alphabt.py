@@ -1,4 +1,5 @@
 #!/usr/bin/python3
-print(''.join([
-    '' if chr(i) in 'qe' else chr(i) for i in range(ord('a'), ord('z') + 1)
-]), end=None)
+for i in [*range(ord('a'), ord('e')),
+          *range(ord('f'), ord('q')),
+          *range(ord('r'), ord('z') + 1)]:
+    print('{:c}'.format(i), end="")
