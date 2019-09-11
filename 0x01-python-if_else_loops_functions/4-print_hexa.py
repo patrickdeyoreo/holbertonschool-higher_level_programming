@@ -1,4 +1,4 @@
 #!/usr/bin/python3
-print("\n".join(
-    map(lambda n: '{0} = {0:#x}'.format(n), range(99))
+print('\n'.join(
+    map(' = '.join, zip(map(str, range(99)), map('{:#x}'.format, range(99))))
 ))
