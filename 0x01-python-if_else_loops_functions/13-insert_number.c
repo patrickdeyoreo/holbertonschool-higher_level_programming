@@ -1,10 +1,18 @@
 #include "lists.h"
 
+/**
+ * struct listint_s - singly linked list
+ * @n: integer
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * for Holberton project
+ */
 listint_t *_insert_node(listint_t **head, int number)
 {
 	listint_t *new;
 
-	if (*head && number < (*head)->n)
+	if (*head && number > (*head)->n)
 		return (_insert_node(&((*head)->next), number));
 
 	new = malloc(sizeof(*new));
@@ -18,6 +26,14 @@ listint_t *_insert_node(listint_t **head, int number)
 	return (new);
 }
 
+/**
+ * slistint_s - singly linked list
+ * @n: integer
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * for Holberton project
+ */
 listint_t *insert_node(listint_t **head, int number)
 {
 	if (head)
