@@ -15,4 +15,4 @@ if __name__ == "__main__":
         print("{} arguments:".format(nargs))
 
     for i, v in enumerate(argv[1:]):
-        print("{}: {}".format(i, v))
+        print("{}: {}".format(i + 1, v))
