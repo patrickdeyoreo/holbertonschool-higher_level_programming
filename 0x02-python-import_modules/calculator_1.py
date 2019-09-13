@@ -49,9 +49,3 @@ def div(a, b):
         The return value. a / b
     """
     return int(a / b)
-
-guillaume@ubuntu:~/0x02$ ./1-calculation.py
-10 + 5 = 15
-10 - 5 = 5
-10 * 5 = 50
-10 / 5 = 2
