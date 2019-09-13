@@ -16,15 +16,17 @@ if __name__ == "__main__":
 
     names = []
     for line in hidden.split(b'\xda'):
-        if line.startswith(b'\x0c') or line.startswith(b'\x0f'):
+        if (line.startswith(b'\x0c') or
+                line.startswith(b'\x0f') or
+                line.startswith(b'\x01')):
             names.append(line[1:])
 
     for i, name in enumerate(names):
         end = 0
         while (ord('A') <= name[end] <= ord('Z') or
-                ord('a') <= name[end] <= ord('z') or
-                ord('0') <= name[end] <= ord('9') or
-                name[end] == ord('_')):
+               ord('a') <= name[end] <= ord('z') or
+               ord('0') <= name[end] <= ord('9') or
+               name[end] == ord('_')):
             end += 1
         names[i] = name[:end]
 
