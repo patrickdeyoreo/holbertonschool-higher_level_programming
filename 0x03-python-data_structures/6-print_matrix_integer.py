@@ -2,4 +2,4 @@
 
 
 def print_matrix_integer(matrix=[[]]):
-    list(map(lambda row: print(*row, sep=', '), matrix))
+    list(map(lambda row: print(*row, sep=' '), matrix))
