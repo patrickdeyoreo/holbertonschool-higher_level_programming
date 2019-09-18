@@ -3,6 +3,4 @@
 
 def print_list_integer(my_list=[]):
     if my_list is not None:
-        print(('{}\n' * len(my_list)).format(
-            *['{}'.format(n) for n in my_list]
-        ), end='')
+        print(*['{:d}'.format(n) for n in my_list], sep='\n')
