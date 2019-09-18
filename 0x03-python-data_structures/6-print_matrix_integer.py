@@ -2,4 +2,4 @@
 
 
 def print_matrix_integer(matrix=[[]]):
-    print(*map("{} {} {}".format, *matrix), sep='\n')
+    list(map(lambda row: print(*row, sep=', '), matrix))
