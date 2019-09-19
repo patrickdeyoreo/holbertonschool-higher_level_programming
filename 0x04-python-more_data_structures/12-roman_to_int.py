@@ -16,7 +16,7 @@ def roman_to_int(roman_string):
     }
     try:
         return reduce(
-            lambda l, r: r - l if l < r  else r + l,
+            lambda l, r: r - l if l < r else r + l,
             map(n2n.get, roman_string.upper())
         )
     except (KeyError, TypeError):
