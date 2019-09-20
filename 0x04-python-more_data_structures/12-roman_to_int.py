@@ -1,10 +1,16 @@
 #!/usr/bin/python3
 
-from functools import reduce
+
+def _reduce(fn, ls, init=0):
+    """ Reduce a list to a single value
+    """
+    if ls:
+        return _reduce(fn, ls[1:], fn(init, ls[0]))
+    return init
 
 
 def roman_to_int(roman_string):
-    """ Convert Roman numerals to integers
+    """ Convert a Roman numeral to an integer
     """
     n2n = {
         'I': 1,
@@ -15,9 +21,9 @@ def roman_to_int(roman_string):
         'D': 500,
     }
     try:
-        return reduce(
-            lambda l, r: r - l if l < r else r + l,
-            map(n2n.get, roman_string.upper())
+        return _reduce(
+            lambda l, r: r + l if r <= l else r - l,
+            list(map(n2n.get, roman_string.upper())),
         )
     except (KeyError, TypeError):
         return 0
