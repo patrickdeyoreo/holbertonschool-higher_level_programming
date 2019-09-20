@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
 
-def _reduce(fn, ls, init=0):
+def _reduce(fn, seq, init=0):
     """ Reduce a list to a single value
     """
-    if ls:
-        return _reduce(fn, ls[1:], fn(init, ls[0]))
-    return init
+    try:
+        return _reduce(fn, seq[1:], fn(init, seq[0]))
+    except IndexError:
+        return init
 
 
 def roman_to_int(roman_string):
@@ -21,9 +22,15 @@ def roman_to_int(roman_string):
         'D': 500,
     }
     try:
-        return -1 * _reduce(
-            lambda r, l: r - l if r < l else r + l,
-            list(map(n2n.get, roman_string[::-1])),
-        )
-    except (KeyError, TypeError):
+        numbers = list(map(n2n.get, roman_string[::-1]))
+        integer = numbers[0]
+    except (IndexError, KeyError, TypeError):
         return 0
+
+    for i in range(len(numbers[1:])):
+        if numbers[i + 1] >= numbers[i]:
+            integer += numbers[i + 1]
+        else:
+            integer -= numbers[i + 1]
+
+    return integer
