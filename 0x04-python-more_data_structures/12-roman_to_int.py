@@ -21,9 +21,9 @@ def roman_to_int(roman_string):
         'D': 500,
     }
     try:
-        return _reduce(
-            lambda l, r: r + l if r <= l else r - l,
-            list(map(n2n.get, roman_string.upper())),
+        return -1 * _reduce(
+            lambda r, l: r - l if r < l else r + l,
+            list(map(n2n.get, roman_string[::-1])),
         )
     except (KeyError, TypeError):
         return 0
