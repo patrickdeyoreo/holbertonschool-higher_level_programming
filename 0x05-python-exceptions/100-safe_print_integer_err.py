@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 def safe_print_integer_err(value):
-    """ Print an integer 
+    """ Print an integer
     """
     try:
         print("{:d}".format(value))
