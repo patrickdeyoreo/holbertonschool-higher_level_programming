@@ -2,21 +2,19 @@
 def list_division(my_list_1, my_list_2, list_length):
     """ Divide each element of a list by the corresponding element of another
     """
-    new = list()
-
+    results = list()
     for index in range(list_length):
         try:
-            result = my_list_1[index] / my_list_2[index]
-        except TypeError:
-            print("wrong type")
-            result = 0
-        except ZeroDivisionError:
-            print("division by 0")
-            result = 0
+            r = my_list_1[index] / my_list_2[index]
         except IndexError:
             print("out of range")
-            result = 0
+            r = 0
+        except TypeError:
+            print("wrong type")
+            r = 0
+        except ZeroDivisionError:
+            print("division by 0")
+            r = 0
         finally:
-            new.append(result)
-
-    return new
+            results.append(r)
+    return results

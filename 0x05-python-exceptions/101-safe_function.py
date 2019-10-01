@@ -4,9 +4,6 @@ def safe_function(fct, *args):
     """
     try:
         return fct(*args)
-
-    except:
-        __import__('sys').stderr.write('Exception: {}\n'.format(
-            __import__('sys').exc_info()[1]
-        ))
+    except Exception as e:
+        print('Exception: {}\n'.format(e), file=__import__('sys').stderr)
         return None
