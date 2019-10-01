@@ -6,7 +6,7 @@ def safe_function(fct, *args):
         return fct(*args)
 
     except:
-        __import__('sys').stderr.write(
-            'Exception: {}\n'.format(__import__('sys').exc_info()[1]
+        __import__('sys').stderr.write('Exception: {}\n'.format(
+            __import__('sys').exc_info()[1]
         ))
         return None
