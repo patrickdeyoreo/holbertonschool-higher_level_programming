@@ -65,3 +65,11 @@ class SinglyLinkedList():
     def sorted_insert(self, value):
         """ Inset a Node into a list sorted in ascending order
         """
+        if self.__head is None or value <= self.__head.data:
+            self.__head = Node(value, self.__head)
+        else:
+            prev = self.__head
+            node = prev.next_node
+            while node is not None and value > node.data:
+                prev, node = node, node.next_node
+            prev.next_node = Node(value, node)
