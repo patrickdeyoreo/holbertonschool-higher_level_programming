@@ -39,7 +39,4 @@ class Square():
     def my_print(self):
         """ Print a visual representation of a square
         """
-        try:
-            assert list(map(print, ['#' * self.__size] * self.__size))
-        except AssertionError:
-            print()
+        print('\n'.join(['#' * self.size] * self.size))

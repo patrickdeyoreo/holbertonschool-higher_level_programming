@@ -67,9 +67,6 @@ class Square():
     def my_print(self):
         """ Print a visual representation of a square
         """
-        if self.size:
-            list(map(
-                print, [' ' * self.position[0] + '#' * self.size] * self.size
-            ))
-        else:
-            print()
+        print('\n'.join(
+            [' ' * self.position[0] + '#' * self.size] * self.size
+        ))
