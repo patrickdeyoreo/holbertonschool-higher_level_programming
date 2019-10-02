@@ -1,0 +1,75 @@
+#!/usr/bin/python3
+""" Module providing a definition of a class 'Square'
+"""
+
+
+class Square():
+    """ Definition of a 'Square'
+    """
+    def __init__(self, size=0, position=(0, 0)):
+        """ Instantiate a 'Square'
+        """
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
+        if size < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = size
+
+        if not (isinstance(position, tuple) and
+                isinstance(position[0], int) and
+                isinstance(position[1], int) and
+                len(position) == 2 and
+                position[0] >= 0 and
+                position[1] >= 0):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        self.__position = position
+
+    def area(self):
+        """ Compute the area of a 'Square'
+        """
+        return self.__size ** 2
+
+    @property
+    def size(self):
+        """ Get the size of a square
+        """
+        return self.__size
+
+    @size.setter
+    def size(self, size):
+        """ Set the size of a square
+        """
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
+        if size < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = size
+
+    @property
+    def position(self):
+        """ Get the position of a square
+        """
+        return self.__position
+
+    @position.setter
+    def position(self, position):
+        """ Set the position of a square
+        """
+        if not (isinstance(position, tuple) and
+                isinstance(position[0], int) and
+                isinstance(position[1], int) and
+                len(position) == 2 and
+                position[0] >= 0 and
+                position[1] >= 0):
+            raise TypeError("position must sbe a tuple of 2 positive integers")
+        self.__position = position
+
+    def my_print(self):
+        """ Print a visual representation of a square
+        """
+        if self.size:
+            list(map(
+                print, [' ' * self.position[0] + '#' * self.size] * self.size
+            ))
+        else:
+            print()

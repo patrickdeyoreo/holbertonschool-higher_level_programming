@@ -1,0 +1,9 @@
+# Whitelist
+
+*
+!README.md
+!AUTHORS
+!.gitignore
+!*.c
+!*.h
+!*.py
