@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """ Module providing class 'MagicClass' to replicate bytecode for Holberton """
-math = __import__('math')
+import math
 
 
 class MagicClass():
     """ Definition of a class to replicate the afformentioned bytecode """
-    def __init__(self, radius):
+    def __init__(self, radius=0):
         """ Instantiate a MagicClass object to represent a circle """
         self.__radius = 0
         if type(radius) is not int and type(radius) is not float:
