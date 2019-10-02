@@ -42,3 +42,26 @@ class Node():
         if next_node is not None and not isinstance(next_node, Node):
             raise TypeError("next_node must be a Node object")
         self.__next_node = next_node
+
+
+class SinglyLinkedList():
+    """ Definition of a singly-linked list
+    """
+    def __init__(self):
+        """ Instantiate a singly-linked list
+        """
+        self.__head = None
+
+    def __str__(self):
+        """ Generate a visual representation of a list
+        """
+        data = list()
+        node = self.__head
+        while node is not None:
+            data.append(node.data)
+            node = node.next_node
+        return "\n".join(map(str, data))
+
+    def sorted_insert(self, value):
+        """ Inset a Node into a list sorted in ascending order
+        """
