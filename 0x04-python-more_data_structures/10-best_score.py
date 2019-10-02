@@ -2,7 +2,7 @@
 
 
 def best_score(a_dictionary):
-    """ Retrieve the a key of the largest integer value
+    """ Retrieve the key of the largest integer value
     """
     if a_dictionary is not None:
         return max(
