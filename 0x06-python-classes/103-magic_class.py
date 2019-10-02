@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Module providing class 'MagicClass' to replicate bytecode for Holberton """
-import math
+math = __import__('math')
 
 
 class MagicClass():
