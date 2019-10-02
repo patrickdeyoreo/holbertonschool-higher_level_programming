@@ -18,7 +18,8 @@ class Square():
                 len(position) == 2 and
                 isinstance(position[0], int) and
                 isinstance(position[1], int) and
-                position >= (0, 0)):
+                position[0] >= 0 and
+                position[1] >= 0):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = position
 
@@ -57,7 +58,8 @@ class Square():
                 len(position) == 2 and
                 isinstance(position[0], int) and
                 isinstance(position[1], int) and
-                position >= (0, 0)):
+                position[0] >= 0 and
+                position[1] >= 0):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = position
 
