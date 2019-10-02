@@ -20,3 +20,4 @@ my_square_1 = Square(3, tuple())
 my_square_1.my_print()
 
 print("--")
+
