@@ -13,7 +13,7 @@ class Node():
             raise TypeError("data must be an integer")
         if next_node is not None and not isinstance(next_node, Node):
             raise TypeError("next_node must be a Node object")
-        self.__data, self.__next_node = data, next_node
+        self.data, self.next_node = data, next_node
 
     @property
     def data(self):
