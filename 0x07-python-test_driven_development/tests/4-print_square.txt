@@ -13,6 +13,10 @@ TypeError: print_square() takes 1 positional argument but 2 were given
 >>> print_square(2)
 ##
 ##
+>>> print_square(-1)
+Traceback (most recent call last):
+  ...
+ValueError: size must be >= 0
 >>> print_square('x')
 Traceback (most recent call last):
   ...
