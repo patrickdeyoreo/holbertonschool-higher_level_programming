@@ -7,3 +7,5 @@
 !*.c
 !*.h
 !*.py
+!tests/
+!tests/*
