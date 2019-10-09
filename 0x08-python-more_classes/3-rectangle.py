@@ -15,7 +15,9 @@ class Rectangle():
     def __str__(self):
         """ Represent a rectangle as a string
         """
-        return '\n'.join(['#' * self.width] * self.height)
+        if self.height and self.width:
+            return '\n'.join(['#' * self.width] * self.height)
+        return ''
 
     @property
     def width(self):

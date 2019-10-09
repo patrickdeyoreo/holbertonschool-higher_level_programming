@@ -25,7 +25,11 @@ class Rectangle():
     def __str__(self):
         """ Represent a rectangle as a string
         """
-        return '\n'.join([str(self.print_symbol) * self.width] * self.height)
+        if self.height and self.width:
+            return '\n'.join(
+                [str(self.print_symbol) * self.width] * self.height
+            )
+        return ''
 
     def __repr__(self):
         """ Represent a rectangle in a form that may be reused as input
