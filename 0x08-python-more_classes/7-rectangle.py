@@ -26,7 +26,9 @@ class Rectangle():
         """ Represent a rectangle as a string
         """
         if self.height and self.width:
-            return '\n'.join(['#' * self.width] * self.height)
+            return '\n'.join(
+                [str(self.print_symbol) * self.width] * self.height
+            )
         return ''
 
     def __repr__(self):
