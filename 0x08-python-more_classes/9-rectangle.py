@@ -13,8 +13,8 @@ class Rectangle():
         """ Instantiate a rectangle
         """
         type(self).number_of_instances += 1
-        self.height = height
         self.width = width
+        self.height = height
 
     def __del__(self):
         """ Delete a rectangle
