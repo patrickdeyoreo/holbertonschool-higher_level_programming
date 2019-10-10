@@ -36,6 +36,10 @@ class TestMaxInteger(unittest.TestCase):
     def test_OneElementListArguments(self):
         """Test with a list containing a single element"""
         self.assertEqual(max_integer([0]), 0)
+        self.assertEqual(max_integer([1]), 1)
+        self.assertEqual(max_integer([float("inf")]), float("inf"))
+        self.assertEqual(max_integer([float("-inf")]), float("-inf"))
+        self.assertNotEqual(max_integer([float("nan")]), 0)
 
     def test_LimitsListArguments(self):
         """Test with lists containg limits (i.e. inf, -inf, nan)"""
