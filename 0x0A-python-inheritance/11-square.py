@@ -18,3 +18,8 @@ class Square(Rectangle):
         """ Render a string representation of a square
         """
         return '[Square] {size}/{size}'.format(size=self.__size)
+
+    def area(self):
+        """ Calculate the area of a square
+        """
+        return super().area()
