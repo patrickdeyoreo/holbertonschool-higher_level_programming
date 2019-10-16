@@ -22,12 +22,12 @@
 >>> ls.print_sorted()
 Traceback (most recent call last):
   ...
-TypeError: '<' not supported between instances of 'int' and 'str'
+TypeError: unorderable types: int() < str()
 >>> ls.reverse()
 >>> ls.print_sorted()
 Traceback (most recent call last):
   ...
-TypeError: '<' not supported between instances of 'str' and 'int'
+TypeError: unorderable types: str() < int()
 >>> ls.clear()
 >>> ls.append(float("inf"))
 >>> ls.append(0)
