@@ -10,11 +10,11 @@
 [0, 1]
 >>> ls.append(-1)
 >>> print(ls)
-[1, 0, -1]
+[0, 1, -1]
 >>> ls.print_sorted()
 [-1, 0, 1]
 >>> print(ls)
-[1, 0, -1]
+[0, 1, -1]
 >>> ls.clear()
 >>> ls.append('z')
 >>> ls.print_sorted()
