@@ -11,15 +11,13 @@ class Square(Rectangle):
     def __init__(self, size):
         """ Instantiate a square
         """
-        super().__init__(size, size)
+        try:
+            super().__init__(size, size)
+        except TypeError:
+            raise TypeError("size must be an integer")
         self.__size = size
 
     def __str__(self):
         """ Render a string representation of a square
         """
         return '[Square] {size}/{size}'.format(size=self.__size)
-
-    def area(self):
-        """ Calculate the area of a square
-        """
-        return super().area()
