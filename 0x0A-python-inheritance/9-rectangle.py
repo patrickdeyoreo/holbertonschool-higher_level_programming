@@ -20,3 +20,8 @@ class Rectangle(BaseGeometry):
         """ Render a string representation of a rectangle
         """
         return '[Rectangle] {}/{}'.format(self.__width, self.__height)
+
+    def area(self):
+        """ Calculate the area of a rectangle
+        """
+        return self.__width * self.__height
