@@ -11,6 +11,8 @@ FILENAME = 'add_item.json'
 
 if __name__ == '__main__':
     try:
-        save_to_json_file(load_from_json_file(FILENAME) + argv[1:], FILENAME)
+        ls = load_from_json_file(FILENAME)
     except (FileNotFoundError, JSONDecodeError):
-        save_to_json_file(argv[1:], FILENAME)
+        ls = []
+    ls += argv[1:]
+    save_to_json_file(ls, FILENAME)
