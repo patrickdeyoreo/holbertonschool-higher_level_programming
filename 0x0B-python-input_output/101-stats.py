@@ -5,7 +5,13 @@ Input Format:
 """
 
 from collections import defaultdict
-from sys import stdin
+from sys import stdin, exit as sysexit
+
+
+def print_stats(file_size, status_codes):
+    print("File size: {}".format(total_size), *(
+        "{}: {}".format(k, status_codes[k]) for k in sorted(status_codes)
+    ), sep="\n")
 
 
 if __name__ == '__main__':
@@ -14,16 +20,15 @@ if __name__ == '__main__':
     line_count = 0
     while True:
         try:
-            *_, status_code, file_size = stdin.readline().split()
-            status_codes[status_code] += 1
-            total_size += int(file_size)
-            if line_count < 9:
-                line_count += 1
-            else:
-                line_count = 0
-                raise KeyboardInterrupt
-        except (KeyboardInterrupt, ValueError):
-            print("File size: {}".format(total_size), *[
-                "{}: {}".format(k, status_codes[k])
-                for k in sorted(status_codes)
-            ], sep="\n")
+            for _ in range(10):
+                line = stdin.readline()
+                if line:
+                    *_, status_code, file_size = line.split()
+                    status_codes[status_code] += 1
+                    total_size += int(file_size)
+                else:
+                    sysexit(0)
+            print_stats(file_size, status_codes)
+        except KeyboardInterrupt as exc:
+            print_stats(file_size, status_codes)
+            raise exc
