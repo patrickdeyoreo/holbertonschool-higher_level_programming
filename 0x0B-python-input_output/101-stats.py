@@ -7,6 +7,8 @@ Input Format:
 from collections import defaultdict
 from sys import stdin, exit as sysexit
 
+STATUS_CODES = ['200', '301', '400', '401', '403', '404', '405', '500']
+
 
 def print_stats(file_size, status_codes):
     print("File size: {}".format(total_size), *(
@@ -24,10 +26,12 @@ if __name__ == '__main__':
                 line = stdin.readline()
                 if line:
                     *_, status_code, file_size = line.split()
-                    status_codes[status_code] += 1
+                    if status_code in STATUS_CODES:
+                        status_codes[status_code] += 1
                     total_size += int(file_size)
                 else:
-                    print_stats(file_size, status_codes)
+                    if total_size:
+                        print_stats(file_size, status_codes)
                     sysexit(0)
             print_stats(file_size, status_codes)
         except KeyboardInterrupt as exc:
