@@ -6,21 +6,26 @@ Input Format:
 
 from collections import defaultdict
 from sys import stdin
+from time import sleep
 
 
 if __name__ == '__main__':
     status_codes = defaultdict(lambda: 0)
     total_size = 0
     line_count = 0
-    try:
-        host, *_, status_code, file_size = stdin.readline().split()
-        if line_count < 9:
-            line_count += 1
-        else:
+    while True:
+        try:
+            *_, status_code, file_size = stdin.readline().split()
+            status_codes[status_code] += 1
+            total_size += int(file_size)
+            if line_count < 9:
+                line_count += 1
+            else:
+                raise KeyboardInterrupt
+        except (KeyboardInterrupt, ValueError):
+            print("File size: {}".format(total_size), *[
+                "{}: {}".format(k, status_codes[k])
+                for k in sorted(status_codes)
+            ], sep="\n")
             line_count = 0
-            raise KeyboardInterrupt
-
-    except KeyboardInterrupt:
-        print("File size: {}", [
-            "{}: {}".format(k, status_codes[k])for k in sorted(status_codes)
-        ], sep="\n")
+            continue
