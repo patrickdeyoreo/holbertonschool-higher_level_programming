@@ -27,6 +27,7 @@ if __name__ == '__main__':
                     status_codes[status_code] += 1
                     total_size += int(file_size)
                 else:
+                    print_stats(file_size, status_codes)
                     sysexit(0)
             print_stats(file_size, status_codes)
         except KeyboardInterrupt as exc:
