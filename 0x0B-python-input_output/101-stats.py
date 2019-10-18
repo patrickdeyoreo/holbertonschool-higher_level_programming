@@ -6,7 +6,6 @@ Input Format:
 
 from collections import defaultdict
 from sys import stdin
-from time import sleep
 
 
 if __name__ == '__main__':
@@ -21,11 +20,10 @@ if __name__ == '__main__':
             if line_count < 9:
                 line_count += 1
             else:
+                line_count = 0
                 raise KeyboardInterrupt
         except (KeyboardInterrupt, ValueError):
             print("File size: {}".format(total_size), *[
                 "{}: {}".format(k, status_codes[k])
                 for k in sorted(status_codes)
             ], sep="\n")
-            line_count = 0
-            continue
