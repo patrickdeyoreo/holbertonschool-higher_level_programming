@@ -4,6 +4,7 @@
 
 import unittest
 
+from models.base import Base
 from models.rectangle import Rectangle
 
 
@@ -17,6 +18,7 @@ class TestRectangle(unittest.TestCase):
         """Test the __init__ method
         """
         self.assertIsInstance(self.rectangle, Rectangle)
+        self.assertIsInstance(self.rectangle, Base)
 
     def test_rectangle_width(self):
         """Test the __init__ method
@@ -94,11 +96,6 @@ class TestRectangle(unittest.TestCase):
             ".*\\b__init__\\(\\) missing 2 required positional arguments\\b.*",
             Rectangle
         )
-        self.assertRaisesRegex(
-            TypeError,
-            ".*\\b__init__\\(\\) takes from 3 to 6 positional arguments\\b.*",
-            Rectangle, 0, 0, 0, 0, 0, 0
-        )
 
     def test_create_type(self):
         """Test the create method
@@ -147,9 +144,4 @@ class TestRectangle(unittest.TestCase):
             TypeError,
             ".*\\bcreate\\(\\) takes 1 positional argument\\b.*",
             Rectangle.create, 0
-        )
-        self.assertRaisesRegex(
-            TypeError,
-            ".*\\bcreate\\(\\) takes 1 positional argument\\b.*",
-            Rectangle.create, 0, 0
         )

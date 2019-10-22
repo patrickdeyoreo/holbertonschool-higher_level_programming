@@ -9,7 +9,7 @@ import turtle
 class Base():
     """Base class for all other classes in this module
     """
-    HEADERS = ('id', )
+    HEADERS = ('id',)
 
     __nb_objects = 0
 
@@ -50,7 +50,7 @@ class Base():
     def from_json_string(json_string):
         """Return the list defined by a JSON string
         """
-        if json_string:
+        if json_string is not None:
             return json.loads(json_string)
         return []
 
@@ -58,9 +58,9 @@ class Base():
     def to_json_string(list_dictionaries):
         """Return a JSON representation a list of dictionaries
         """
-        if list_dictionaries:
+        if list_dictionaries is not None:
             return json.dumps(list_dictionaries)
-        return "[]"
+        return '[]'
 
     @classmethod
     def load_from_file(cls):
@@ -79,9 +79,9 @@ class Base():
         """
         try:
             with open("{}.csv".format(cls.__name__), 'r') as ifile:
-                return [cls.create(**{
-                    k: int(v) for k, v in zip(cls.HEADERS, line.split(','))
-                }) for line in ifile.readlines()]
+                return [cls.create(
+                    **{k: int(v) for k, v in zip(cls.HEADERS, line.split(','))}
+                ) for line in ifile.readlines()]
         except FileNotFoundError:
             return []
 
@@ -113,7 +113,7 @@ class Base():
     def create(cls, **dictionary):
         """Return a new instance of cls with its attributes set
         """
-        args = list()
+        args = []
         while True:
             try:
                 obj = cls(*args)
@@ -128,9 +128,9 @@ class Base():
         """Update the attributes of a base object
         """
         if args:
-            for pair in zip(self.__class__.HEADERS, args):
+            for pair in zip(self.HEADERS, args):
                 setattr(self, *pair)
         else:
             for key in kwargs:
-                if key in self.__class__.HEADERS:
+                if key in self.HEADERS:
                     setattr(self, key, kwargs[key])
