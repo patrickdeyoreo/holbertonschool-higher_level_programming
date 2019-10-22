@@ -34,6 +34,6 @@ if __name__ == '__main__':
                         print_stats(file_size, status_codes)
                     sysexit(0)
             print_stats(file_size, status_codes)
-        except KeyboardInterrupt as exc:
+        except KeyboardInterrupt:
             print_stats(file_size, status_codes)
-            raise exc
+            raise
