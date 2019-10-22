@@ -110,3 +110,14 @@ class Rectangle(Base):
         """Get a dictionary representation of a rectangle
         """
         return {key: getattr(self, key) for key in self.__class__.HEADERS}
+
+    def update(self, *args, **kwargs):
+        """Update the attributes of a  object
+        """
+        if args:
+            for pair in zip(self.HEADERS, args):
+                setattr(self, *pair)
+        else:
+            for key in kwargs:
+                if key in self.HEADERS:
+                    setattr(self, key, kwargs[key])
