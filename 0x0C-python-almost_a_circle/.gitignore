@@ -8,4 +8,6 @@
 !*.h
 !*.py
 !*.txt
-!tests/
+!/models/
+!/tests/
+!/tests/test_models/
