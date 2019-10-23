@@ -3,6 +3,10 @@
 """
 
 import unittest
+import json
+from os import chdir, getcwd, path, remove
+from shutil import rmtree
+from tempfile import mkdtemp
 
 from models.base import Base
 from models.rectangle import Rectangle
@@ -12,7 +16,15 @@ class TestRectangle(unittest.TestCase):
     """Test rectangle model methods
     """
     def setUp(self):
+        """Create a temporary directory and Base instance
+        """
         self.rectangle = Rectangle(1, 1)
+        chdir(mkdtemp())
+
+    def tearDown(self):
+        """Remove temporary files and directories
+        """
+        rmtree(getcwd(), ignore_errors=False)
 
     def test_rectangle(self):
         """Test the __init__ method
@@ -145,3 +157,23 @@ class TestRectangle(unittest.TestCase):
             ".*\\bcreate\\(\\) takes 1 positional argument\\b.*",
             Rectangle.create, 0
         )
+
+    def test_save_to_file(self):
+        """Test the save_to_file method
+        """
+        types = (int, float, str, tuple, list, dict, bool)
+        insts = [self.rectangle] + [Rectangle(1, 1, id=t()) for t in types]
+        fname = 'Rectangle.json'
+        try:
+            remove(fname)
+        except FileNotFoundError:
+            pass
+        self.assertIsNone(Rectangle.save_to_file(None))
+        with open(fname) as ifile:
+            self.assertEqual(ifile.read(), '[]')
+        for index in range(len(insts)):
+            self.assertIsNone(Rectangle.save_to_file(insts[index:]))
+            with open(fname) as ifile:
+                self.assertEqual(ifile.read(), Rectangle.to_json_string(
+                    [obj.to_dictionary() for obj in insts[index:]]
+                ))

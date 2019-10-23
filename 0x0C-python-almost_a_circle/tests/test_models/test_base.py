@@ -4,6 +4,9 @@
 
 import unittest
 import json
+from os import chdir, getcwd, path, remove
+from shutil import rmtree
+from tempfile import mkdtemp
 
 from models.base import Base
 
@@ -12,7 +15,15 @@ class TestBase(unittest.TestCase):
     """Test base model methods
     """
     def setUp(self):
+        """Create a temporary directory and Base instance
+        """
         self.base = Base()
+        chdir(mkdtemp())
+
+    def tearDown(self):
+        """Remove temporary files and directories
+        """
+        rmtree(getcwd(), ignore_errors=False)
 
     def test_base(self):
         """Test the __init__ method
@@ -83,7 +94,7 @@ class TestBase(unittest.TestCase):
     def test_create_id_identity(self):
         """Test the create method
         """
-        self.assertIs(Base.create(id=None).id, None)
+        self.assertIsNone(Base.create(id=None).id)
         self.assertIs(Base.create(id=type).id, type)
 
     def test_create_id_type(self):
@@ -100,18 +111,30 @@ class TestBase(unittest.TestCase):
             Base.create, 0
         )
 
-    def test_to_json_string_equality_defaults(self):
+    def test_to_json_string_equality(self):
         """Test the to_json_string method
         """
         types = (int, float, str, tuple, list, dict, bool)
+        lists = ([{'a': 1}], [{'a': 1}, {'a': 2, 'b': 3}])
         self.assertEqual(Base.to_json_string(None), json.dumps([]))
         for value in (t() for t in types):
             self.assertEqual(Base.to_json_string(value), json.dumps(value))
             self.assertEqual(Base.to_json_string([value]), json.dumps([value]))
-
-    def test_to_json_string_equality(self):
-        """Test the to_json_string method
-        """
-        values = ([{}], [{}, {}], [{'a': 1}], [{'a': 1}, {'a': 2, 'b': 3}])
-        for value in values:
+        for value in lists:
             self.assertEqual(Base.to_json_string(value), json.dumps(value))
+
+    def test_save_to_file(self):
+        """Test the save_to_file method
+        """
+        types = (int, float, str, tuple, list, dict, bool)
+        bases = [self.base] + [Base(id=t()) for t in types]
+        fname = 'Base.json'
+        try:
+            remove(fname)
+        except FileNotFoundError:
+            pass
+        self.assertIsNone(Base.save_to_file(None))
+        with open(fname) as ifile:
+            self.assertEqual(ifile.read(), '[]')
+        for index in range(len(bases)):
+            self.assertRaises(AttributeError, Base.save_to_file, bases[index:])
