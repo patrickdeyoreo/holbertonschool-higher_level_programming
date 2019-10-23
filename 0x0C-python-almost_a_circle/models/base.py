@@ -58,10 +58,9 @@ class Base():
     def to_json_string(list_dictionaries):
         """Return a JSON representation a list of dictionaries
         """
-        if list_dictionaries is None:
+        if list_dictionaries is None or not list_dictionaries:
             return "[]"
-        else:
-            return json.dumps(list_dictionaries)
+        return json.dumps(list_dictionaries)
 
     @classmethod
     def load_from_file(cls):
