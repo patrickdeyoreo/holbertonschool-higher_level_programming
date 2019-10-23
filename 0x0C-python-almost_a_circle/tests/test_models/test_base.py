@@ -4,7 +4,7 @@
 
 import unittest
 import json
-from os import chdir, getcwd, path, remove
+from os import chdir, getcwd, remove
 from shutil import rmtree
 from tempfile import mkdtemp
 
