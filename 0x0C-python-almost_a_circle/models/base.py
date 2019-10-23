@@ -9,8 +9,6 @@ import turtle
 class Base():
     """Base class for all other classes in this module
     """
-    HEADERS = ('id',)
-
     __nb_objects = 0
 
     def __init__(self, id=None):
@@ -80,7 +78,7 @@ class Base():
         try:
             with open("{}.csv".format(cls.__name__), 'r') as ifile:
                 return [cls.create(
-                    **{k: int(v) for k, v in zip(cls.HEADERS, line.split(','))}
+                    **{k: int(v) for k, v in zip(('id',), line.split(','))}
                 ) for line in ifile.readlines()]
         except FileNotFoundError:
             return []
@@ -106,7 +104,7 @@ class Base():
                 for obj in list_objs:
                     obj = obj.to_dictionary()
                     ofile.write(
-                        ','.join(str(obj[key]) for key in cls.HEADERS) + '\n'
+                        ','.join(str(obj[key]) for key in ('id',)) + '\n'
                     )
 
     @classmethod
@@ -128,9 +126,9 @@ class Base():
         """Update the attributes of a base object
         """
         if args:
-            for pair in zip(self.HEADERS, args):
+            for pair in zip(('id',), args):
                 setattr(self, *pair)
         else:
             for key in kwargs:
-                if key in self.HEADERS:
+                if key in ('id',):
                     setattr(self, key, kwargs[key])

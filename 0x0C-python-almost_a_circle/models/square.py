@@ -8,8 +8,6 @@ from models.rectangle import Rectangle
 class Square(Rectangle):
     """Representation of a rectangle
     """
-    HEADERS = ('id', 'size', 'x', 'y')
-
     def __init__(self, size, x=0, y=0, id=None):
         """Instantiate a rectangle
         """
@@ -42,15 +40,17 @@ class Square(Rectangle):
     def to_dictionary(self):
         """Get a dictionary representation of a square
         """
-        return {key: getattr(self, key) for key in self.__class__.HEADERS}
+        HEADERS = ('id', 'size', 'x', 'y')
+        return {key: getattr(self, key) for key in HEADERS}
 
     def update(self, *args, **kwargs):
         """Update the attributes of a  object
         """
+        HEADERS = ('id', 'size', 'x', 'y')
         if args:
-            for pair in zip(self.HEADERS, args):
+            for pair in zip(HEADERS, args):
                 setattr(self, *pair)
         else:
             for key in kwargs:
-                if key in self.HEADERS:
+                if key in HEADERS:
                     setattr(self, key, kwargs[key])
