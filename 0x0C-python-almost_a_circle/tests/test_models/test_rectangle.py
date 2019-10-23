@@ -24,7 +24,7 @@ class TestRectangle(unittest.TestCase):
     def tearDown(self):
         """Remove temporary files and directories
         """
-        rmtree(getcwd(), ignore_errors=False)
+        rmtree(getcwd(), ignore_errors=True)
 
     def test_rectangle(self):
         """Test the __init__ method
