@@ -1,4 +1,4 @@
---  list all genres and display the number of shows linked to each
+-- list all genres and display the number of shows linked to each
 SELECT tg.name AS genre, COUNT(*) AS number_of_shows
 FROM tv_genres tg
 INNER JOIN tv_show_genres tsg
