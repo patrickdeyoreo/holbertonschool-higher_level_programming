@@ -1,4 +1,4 @@
--- ists all Comedy shows
+-- lists all Comedy shows
 SELECT ts.title
 FROM tv_shows ts
 INNER JOIN tv_show_genres tsg
