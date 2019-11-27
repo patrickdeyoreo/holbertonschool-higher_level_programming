@@ -6,4 +6,4 @@ ON tg.id = tsg.genre_id
 INNER JOIN tv_shows ts
 ON ts.id = tsg.show_id
 WHERE ts.title = "Dexter"
-ORDER BY title;
+ORDER BY tg.name;
