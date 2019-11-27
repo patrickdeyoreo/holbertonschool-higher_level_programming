@@ -1,7 +1,10 @@
--- list all shows
-SELECT tg.name AS genre, COUNT(*) as number_of_shows
+-- list all genres of the show Dexter
+SELECT tg.name
 FROM tv_genres tg
 INNER JOIN tv_show_genres tsg
 ON tg.id = tsg.genre_id
-GROUP BY genre
-ORDER BY number_of_shows DESC;
+INNER JOIN tv_shows ts
+ON ts.id = tsg.show_id
+WHERE ts.title = "DEXTER"
+ORDER BY title;
+
