@@ -34,7 +34,7 @@ if __name__ == '__main__':
     query = """
     SELECT id, name
     FROM states
-    WHERE name = '{}'
+    WHERE BINARY name = '{}'
     ORDER BY id;
     """.format(search)
     results = mysqlman.query([query, ()])
