@@ -74,7 +74,7 @@ class MySQLMan():
         Query a database
         """
         results = []
-        for query in args:
-            self.__cursor.execute(query)
+        for query, values in args:
+            self.__cursor.execute(query, values)
             results.append(self.__cursor.fetchall())
         return results
