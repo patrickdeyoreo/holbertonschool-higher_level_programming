@@ -3,7 +3,7 @@
 List all states from a MySQL db on localhost at port 3306
 """
 
-from MySQLdb._exceptions import OperationalError
+from MySQLdb import Error
 from mysqlman import MySQLMan
 from sys import argv, exit, stderr
 
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     except IndexError:
         stderr.write('usage: {}\n'.format(USAGE))
         exit(2)
-    except (OperationalError, ProgrammingError) as e:
+    except Error as e:
         stderr.write('{}\n'.format(e.args[1]))
         exit(1)
     query = "SELECT id, name FROM states ORDER BY id;"

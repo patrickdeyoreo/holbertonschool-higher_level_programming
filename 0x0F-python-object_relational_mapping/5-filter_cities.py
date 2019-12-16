@@ -3,7 +3,7 @@
 List all states matching given name from a MySQL db on localhost at port 3306
 """
 
-from MySQLdb._exceptions import OperationalError, ProgrammingError
+from MySQLdb import Error
 from mysqlman import MySQLMan
 from sys import argv, exit, stderr
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         exit(2)
     try:
         mysqlman = MySQLMan(connect=True, **params)
-    except (OperationalError, ProgrammingError) as e:
+    except Error as e:
         stderr.write('{}\n'.format(e.args[1]))
         exit(1)
     query = """
