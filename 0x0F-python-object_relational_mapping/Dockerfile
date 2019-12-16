@@ -8,8 +8,11 @@ USER root
 RUN ln -sf /opt/conda/bin/python3 /usr/bin/python3
 
 RUN apt-get update && apt-get install -y \
-    libmysqlclient-dev libssl-dev mysql-client mysql-server zlib1g-dev && \
-    apt-get clean
+    libmysqlclient-dev \
+    libssl-dev \
+    mysql-client-5.7 \
+    mysql-server-5.7 \
+    zlib1g-dev && apt-get clean
 
 RUN HOME=/root pip install mysqlclient SQLAlchemy
 
