@@ -20,12 +20,12 @@ class City(Base):
         primary_key=True,
         unique=True,
     )
+    name = Column(
+        String(256),
+        nullable=False,
+    )
     state_id = Column(
         Integer,
         ForeignKey("states.id"),
-        nullable=False,
-    )
-    name = Column(
-        String(256),
         nullable=False,
     )
