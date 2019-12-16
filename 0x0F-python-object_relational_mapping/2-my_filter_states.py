@@ -16,9 +16,9 @@ if __name__ == '__main__':
         'port': 3306,
     }
     mysqlman = MySQLMan(connect=True, **params)
-    query = "SELECT id, name FROM states WHERE name = '{}' ORDER BY id".format(
+    q = "SELECT id, name FROM states WHERE name = '{}' ORDER BY id;".format(
         argv[4]
     )
-    results = mysqlman.query([query, ()])[0]
+    results = mysqlman.query([q, ()])[0]
     for row in results:
         print(row)
