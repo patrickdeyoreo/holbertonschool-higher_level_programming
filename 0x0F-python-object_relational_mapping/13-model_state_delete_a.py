@@ -11,7 +11,6 @@ from sys import argv, exit, stderr
 
 HELP = '{} username password database'.format(argv[0])
 HOST = 'localhost'
-PORT = 3306
 URLFORMAT = '{dialect}+{driver}://{user}:{password}@{host}/{database}'
 
 
@@ -35,5 +34,5 @@ if __name__ == '__main__':
     results = session.query(State).filter(State.name.contains('a')).all()
     for state in results:
         session.delete(state)
-        session.commit()
+    session.commit()
     session.close()
