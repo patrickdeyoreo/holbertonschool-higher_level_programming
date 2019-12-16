@@ -3,12 +3,14 @@
 List all states from a MySQL db on localhost at port 3306
 """
 
-from MySQLdb import Error
 from mysqlman import MySQLMan
+from MySQLdb import Error
 from sys import argv, exit, stderr
 
 
-USAGE = '{} username password database'.format(argv[0])
+HELP = '{} username password database'.format(argv[0])
+HOST = 'localhost'
+PORT = 3306
 
 
 if __name__ == '__main__':
@@ -18,11 +20,11 @@ if __name__ == '__main__':
             user=argv[1],
             password=argv[2],
             database=argv[3],
-            host='localhost',
-            port=3306
+            host=HOST,
+            port=PORT,
         )
     except IndexError:
-        stderr.write('usage: {}\n'.format(USAGE))
+        stderr.write('usage: {}\n'.format(HELP))
         exit(2)
     except Error as e:
         stderr.write('{}\n'.format(e.args[1]))
