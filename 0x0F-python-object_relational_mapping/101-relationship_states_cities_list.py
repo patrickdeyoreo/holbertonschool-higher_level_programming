@@ -34,7 +34,7 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
     results = session.query(State).order_by(State.id)
-    for state in results.all()
+    for state in results.all():
         print('{}: {}'.format(state.id, state.name))
         for city in state.cities:
             print('\t{}: {}'.format(city.id, city.name))
