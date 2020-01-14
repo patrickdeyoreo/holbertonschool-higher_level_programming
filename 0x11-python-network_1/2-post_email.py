@@ -5,7 +5,8 @@ Send an email to a URL using a POST request and display the response body
 
 import sys
 from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
+from urllib.parse import urlencode
+from urllib.request import urlopen
 
 
 if __name__ == '__main__':
@@ -14,9 +15,9 @@ if __name__ == '__main__':
         print('Usage: ', __file__, 'URL', 'email', file=sys.stderr)
         sys.exit(1)
 
-    REQUEST = Request(sys.argv[1], data={'email': sys.argv[2]}, method='POST')
+    DATA = urlencode({'email': sys.argv[2]}).encode()
     try:
-        with urlopen(REQUEST) as r:
+        with urlopen(DATA, sys.argv[1]) as r:
             print(r.read().decode())
     except HTTPError as exc:
         print('Error code:', exc.code, file=sys.stderr)
