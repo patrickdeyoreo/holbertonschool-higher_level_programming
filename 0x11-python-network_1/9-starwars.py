@@ -10,8 +10,17 @@ URL = 'https://swapi.co/api/people'
 
 if __name__ == '__main__':
 
-    resp = requests.post(URL, data={'search': sys.argv[1]})
+    params = {'search': '' if len(sys.argv) == 1 else sys.argv[1]}
+    resp = requests.post(URL, params=params)
     data = resp.json()
-    print('Number of results:', data['count'])
-    for result in data['results']:
-        print(result['name'])
+    print('Number of results:', data.get('count'))
+    results = data.get('results')
+    while results:
+        for result in results:
+            print(result.get('name'))
+        if data.get('next'):
+            resp = requests.get(data.get('next'))
+            data = resp.json()
+            results = data.get('results')
+        else:
+            results = None
