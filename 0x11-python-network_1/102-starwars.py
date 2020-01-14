@@ -11,14 +11,15 @@ URL = 'https://swapi.co/api/people'
 if __name__ == '__main__':
 
     params = {'search': sys.argv[1]}
-    people = requests.get(URL, params=params).json()
-    print('Number of results:', people.get('count'))
-    while people:
-        for person in people.get('results'):
-            print(person['name'])
-            for url in person['films']:
-                print('\t{}'.format(requests.get(url).json().get('title')))
-        if people.get('next'):
-            people = requests.get(people.get('next')).json()
-        else:
-            people = None
+    search = requests.get(URL, params=params).json()
+    number = search.get('count')
+    people = search.get('results')
+    print('Number of results:', number)
+    while search.get('next'):
+        search = requests.get(search['next']).json()
+        people += search.get('results')
+    for person in people:
+        print(person.get('name'))
+        for link in person.get('films'):
+            film = requests.get(link).json()
+            print('\t', film.get('title'), sep='')
