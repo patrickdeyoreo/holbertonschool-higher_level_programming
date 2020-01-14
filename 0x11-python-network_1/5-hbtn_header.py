@@ -14,14 +14,13 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        with requests.get(sys.argv[1]) as r:
-            print(r.headers['X-Request-Id'])
-    except requests.exceptions.ConnectionError as exc:
-        print(exc, file=sys.stderr)
+        HEADERS = requests.get(sys.argv[1]).headers
+    except requests.exceptions.RequestException as exc:
+        print(exc)
         sys.exit(1)
-    except requests.exceptions.InvalidSchema as exc:
-        print(exc, file=sys.stderr)
-        sys.exit(1)
-    except requests.exceptions.MissingSchema as exc:
-        print(exc, file=sys.stderr)
+
+    try:
+        print(HEADERS['X-Request-Id'])
+    except KeyError as exc:
+        print(exc)
         sys.exit(1)

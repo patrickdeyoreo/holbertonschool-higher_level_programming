@@ -14,14 +14,10 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        with requests.post(sys.argv[1], data={'email': sys.argv[2]}) as r:
-            print(r.text)
-    except requests.exceptions.ConnectionError as exc:
-        print(exc, file=sys.stderr)
+        DATA = {'email': sys.argv[2]}
+        TEXT = requests.post(sys.argv[1], data=DATA).text
+    except requests.exceptions.RequestException as exc:
+        print(exc)
         sys.exit(1)
-    except requests.exceptions.InvalidSchema as exc:
-        print(exc, file=sys.stderr)
-        sys.exit(1)
-    except requests.exceptions.MissingSchema as exc:
-        print(exc, file=sys.stderr)
-        sys.exit(1)
+    else:
+        print(TEXT)
