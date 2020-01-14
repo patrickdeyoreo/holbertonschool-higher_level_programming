@@ -14,7 +14,7 @@ if __name__ == '__main__':
     resp = requests.post(URL, data=data)
     try:
         json = resp.json()
-    except JSONDecodeError:
+    except ValueError:
         print('Not a valid JSON')
     else:
         if json:
