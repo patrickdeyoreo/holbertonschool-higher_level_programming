@@ -14,7 +14,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        RESPONSE = requests.post(sys.argv[1])
+        RESPONSE = requests.get(sys.argv[1])
     except requests.exceptions.RequestException as exc:
         print(exc)
         sys.exit(1)
