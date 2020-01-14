@@ -19,5 +19,5 @@ if __name__ == '__main__':
     except requests.exceptions.RequestException as exc:
         print(exc)
         sys.exit(1)
-    else:
-        print(TEXT)
+
+    print(TEXT)

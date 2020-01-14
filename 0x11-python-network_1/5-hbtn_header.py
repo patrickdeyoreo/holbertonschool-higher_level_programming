@@ -19,8 +19,4 @@ if __name__ == '__main__':
         print(exc)
         sys.exit(1)
 
-    try:
-        print(HEADERS['X-Request-Id'])
-    except KeyError as exc:
-        print(exc)
-        sys.exit(1)
+    print(HEADERS['X-Request-Id'])

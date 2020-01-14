@@ -14,14 +14,12 @@ if __name__ == '__main__':
         sys.exit(1)
 
     try:
-        RESP = requests.post(sys.argv[1])
-        CODE = RESP.status_code
-        TEXT = RESP.text
+        RESPONSE = requests.post(sys.argv[1])
     except requests.exceptions.RequestException as exc:
         print(exc)
         sys.exit(1)
 
-    if CODE >= 400:
-        print('Error code:', CODE)
+    if RESPONSE.status_code >= 400:
+        print('Error code:', RESPONSE.status_code)
     else:
-        print(TEXT)
+        print(RESPONSE.text)
