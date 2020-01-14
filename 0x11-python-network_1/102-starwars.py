@@ -13,13 +13,12 @@ if __name__ == '__main__':
     params = {'search': sys.argv[1]}
     people = requests.get(URL, params=params).json()
     print('Number of results:', people.get('count'))
-    while people.get('results'):
-        for person in people['results']:
-            print(person.get('name'))
-            for url in person.get('films'):
-                film = requests.get(url).json()
-                print('\t{}'.format(film.get('title')))
+    while people:
+        for person in people.get('results'):
+            print(person['name'])
+            for url in person['films']:
+                print('\t{}'.format(requests.get(url).json().get('title')))
         if people.get('next'):
-            people = requests.get(people['next']).json()
+            people = requests.get(people.get('next')).json()
         else:
-            break
+            people = None
