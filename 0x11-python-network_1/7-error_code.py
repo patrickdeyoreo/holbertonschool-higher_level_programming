@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Send an email to a URL using a POST request
+Send a request to a URL and display the body of the response
 '''
 
 import sys
