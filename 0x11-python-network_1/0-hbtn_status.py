@@ -10,8 +10,8 @@ URL = 'https://intranet.hbtn.io/status'
 if __name__ == '__main__':
 
     with urlopen(URL) as r:
-        BODY = r.read()
+        body = r.read()
         print("Body response:")
-        print("\t- type:", type(BODY))
-        print("\t- content:", BODY)
-        print("\t- utf8 content:", BODY.decode())
+        print("\t- type:", type(body))
+        print("\t- content:", body)
+        print("\t- utf8 content:", body.decode())

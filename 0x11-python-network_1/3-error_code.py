@@ -20,9 +20,3 @@ if __name__ == '__main__':
     except HTTPError as exc:
         print('Error code:', exc.code)
         sys.exit(1)
-    except URLError as exc:
-        print('Error:', exc.reason)
-        sys.exit(1)
-    except ValueError as exc:
-        print(exc, file=sys.stderr)
-        sys.exit(1)
