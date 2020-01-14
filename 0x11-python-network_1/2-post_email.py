@@ -16,5 +16,5 @@ if __name__ == '__main__':
 
     data = urlencode({'email': sys.argv[2]}).encode()
 
-    with urlopen(sys.argv[1], data=data, method='POST') as r:
+    with urlopen(sys.argv[1], data=data) as r:
         print(r.read().decode())
