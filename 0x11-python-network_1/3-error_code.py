@@ -18,11 +18,11 @@ if __name__ == '__main__':
         with urlopen(sys.argv[1]) as r:
             print(r.read().decode())
     except HTTPError as exc:
-        print('Error code:', exc.code, file=sys.stderr)
+        print('Error code:', exc.code)
         sys.exit(1)
     except URLError as exc:
-        print('Error:', exc.reason, file=sys.stderr)
+        print('Error:', exc.reason)
         sys.exit(1)
     except ValueError as exc:
-        print('Error:', exc, file=sys.stderr)
+        print(exc, file=sys.stderr)
         sys.exit(1)
