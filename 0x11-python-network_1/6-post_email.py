@@ -13,11 +13,5 @@ if __name__ == '__main__':
         print('Usage: ', __file__, 'URL', 'email', file=sys.stderr)
         sys.exit(1)
 
-    try:
-        DATA = {'email': sys.argv[2]}
-        TEXT = requests.post(sys.argv[1], data=DATA).text
-    except requests.exceptions.RequestException as exc:
-        print(exc)
-        sys.exit(1)
-
-    print(TEXT)
+    resp = requests.post(sys.argv[1], data={'email': sys.argv[2]})
+    print(resp.text)

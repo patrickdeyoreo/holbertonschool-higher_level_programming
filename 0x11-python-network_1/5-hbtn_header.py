@@ -13,10 +13,5 @@ if __name__ == '__main__':
         print('Usage: ', __file__, 'URL', file=sys.stderr)
         sys.exit(1)
 
-    try:
-        HEADERS = requests.get(sys.argv[1]).headers
-    except requests.exceptions.RequestException as exc:
-        print(exc)
-        sys.exit(1)
-
-    print(HEADERS['X-Request-Id'])
+    resp = requests.get(sys.argv[1])
+    print(resp.headers.get('X-Request-Id'))

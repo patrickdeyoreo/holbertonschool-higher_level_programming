@@ -13,13 +13,9 @@ if __name__ == '__main__':
         print('Usage: ', __file__, 'URL', file=sys.stderr)
         sys.exit(1)
 
-    try:
-        RESPONSE = requests.get(sys.argv[1])
-    except requests.exceptions.RequestException as exc:
-        print(exc)
-        sys.exit(1)
+    resp = requests.get(sys.argv[1])
 
-    if RESPONSE.status_code >= 400:
-        print('Error code:', RESPONSE.status_code)
+    if resp.status_code >= 400:
+        print('Error code:', resp.status_code)
     else:
-        print(RESPONSE.text)
+        print(resp.text)

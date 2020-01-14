@@ -9,7 +9,7 @@ URL = 'https://intranet.hbtn.io/status'
 
 if __name__ == '__main__':
 
-    TEXT = requests.get(URL).text
+    resp = requests.get(URL)
     print("Body response:")
-    print("\t- type:", type(TEXT))
-    print("\t- content:", TEXT)
+    print("\t- type:", type(resp.text))
+    print("\t- content:", resp.text)
