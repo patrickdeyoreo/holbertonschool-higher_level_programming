@@ -3,15 +3,15 @@
 Makes a request and prints information about the body of the response
 '''
 
-import urllib.request
+from urllib.request import urlopen
 
 URL = 'https://intranet.hbtn.io/status'
 
 if __name__ == '__main__':
 
-    with urllib.request.urlopen(URL) as response:
-        body = response.read()
+    with urlopen(URL) as r:
+        BODY = r.read()
         print("Body response:")
-        print("\t- type:", type(body))
-        print("\t- content:", body)
-        print("\t- utf8 content:", body.decode())
+        print("\t- type:", type(BODY))
+        print("\t- content:", BODY)
+        print("\t- utf8 content:", BODY.decode())
