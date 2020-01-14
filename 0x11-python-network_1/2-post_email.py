@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
     DATA = urlencode({'email': sys.argv[2]}).encode()
     try:
-        with urlopen(DATA, sys.argv[1]) as r:
+        with urlopen(sys.argv[1], DATA) as r:
             print(r.read().decode())
     except HTTPError as exc:
         print('Error code:', exc.code, file=sys.stderr)
