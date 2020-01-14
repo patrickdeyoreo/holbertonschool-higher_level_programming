@@ -10,7 +10,8 @@ URL = 'http://0.0.0.0:5000/search_user'
 
 if __name__ == '__main__':
 
-    resp = requests.post(URL, data={'' if len(sys.argv) == 1 else sys.argv[1]})
+    data = {'q': '' if len(sys.argv) == 1 else sys.argv[1]}
+    resp = requests.post(URL, data=data)
     try:
         json = resp.json()
     except JSONDecodeError:
