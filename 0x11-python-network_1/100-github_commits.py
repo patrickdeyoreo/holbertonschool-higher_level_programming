@@ -6,9 +6,9 @@ List 10 commits (newest to oldest) of the repo "rails" by the user "rails"
 import sys
 import requests
 
-URL = 'https://api.github.com/repos/rails/rails/commits'
+URLFMT = 'https://api.github.com/repos/{owner}/{repo}/commits'
 
 if __name__ == '__main__':
-    resp = requests.get(URL)
+    response = requests.get(URLFMT.format(repo=sys.argv[1], owner=sys.argv[2]))
     for item in response.json()[:10]:
         print('{}: {}'.format(item['sha'], item['commit']['author']['name']))
