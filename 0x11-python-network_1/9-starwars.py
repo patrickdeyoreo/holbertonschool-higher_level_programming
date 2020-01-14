@@ -14,13 +14,11 @@ if __name__ == '__main__':
     resp = requests.post(URL, params=params)
     data = resp.json()
     print('Number of results:', data.get('count'))
-    results = data.get('results')
-    while results:
-        for result in results:
+    while data.get('results'):
+        for result in data['results']:
             print(result.get('name'))
         if data.get('next'):
-            resp = requests.get(data.get('next'))
+            resp = requests.get(data['next'])
             data = resp.json()
-            results = data.get('results')
         else:
-            results = None
+            break
