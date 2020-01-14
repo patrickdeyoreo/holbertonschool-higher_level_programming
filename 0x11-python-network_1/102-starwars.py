@@ -19,7 +19,7 @@ if __name__ == '__main__':
             for url in person.get('films'):
                 film = requests.get(url).json()
                 print('\t', film.get('title'), sep='')
-        if data.get('next'):
-            data = requests.get(data['next']).json()
+        if people.get('next'):
+            people = requests.get(people['next']).json()
         else:
             break
