@@ -7,7 +7,7 @@ request(url, { json: true }, (err, resp, body) => {
     console.log(err);
   } else if (body) {
     for (const i in body.results) {
-      if (body.results[i].episode_id == process.argv[2]) {
+      if (body.results[i].url.endsWith(`/${process.argv[2]}/`)) {
         const characters = body.results[i].characters;
         for (const j in characters) {
           request(characters[j], { json: true }, (err, resp, body) => {
