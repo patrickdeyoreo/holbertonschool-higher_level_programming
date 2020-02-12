@@ -1,5 +1,5 @@
 #!/usr/bin/node
-// Get the number of tasks completed by user id
+// Print all characters of a Star Wars movie
 const request = require('request');
 const url = `https://swapi.co/api/films/${process.argv[2]}`;
 request(url, { json: true }, (err, resp, body) => {
