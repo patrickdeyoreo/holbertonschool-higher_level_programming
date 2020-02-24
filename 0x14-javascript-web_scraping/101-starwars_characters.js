@@ -9,6 +9,7 @@ request(url, { json: true }, (err, resp, body) => {
     for (const i in body.results) {
       if (body.results[i].url.endsWith(`/${process.argv[2]}/`)) {
         const characters = body.results[i].characters;
+        (func, ...args) { 
         for (const j in characters) {
           request(characters[j], { json: true }, (err, resp, body) => {
             if (err) {

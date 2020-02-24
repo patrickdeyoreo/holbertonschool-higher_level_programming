@@ -1,13 +1,5 @@
 #include "lists.h"
 
-/**
- * struct listint_s - singly linked list
- * @n: integer
- * @next: points to the next node
- *
- * Description: singly linked list node structure
- * for Holberton project
- */
 listint_t *_insert_node(listint_t **head, int number)
 {
 	listint_t *new;
@@ -26,14 +18,6 @@ listint_t *_insert_node(listint_t **head, int number)
 	return (new);
 }
 
-/**
- * slistint_s - singly linked list
- * @n: integer
- * @next: points to the next node
- *
- * Description: singly linked list node structure
- * for Holberton project
- */
 listint_t *insert_node(listint_t **head, int number)
 {
 	if (head)

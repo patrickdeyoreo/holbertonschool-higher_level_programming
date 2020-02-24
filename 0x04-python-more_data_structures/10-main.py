@@ -8,3 +8,8 @@ print("Best score: {}".format(best_key))
 best_key = best_score(None)
 print("Best score: {}".format(best_key))
 
+best_key = best_score({'Patrick': 0})
+print("Best score: {}".format(best_key))
+
+best_key = best_score({})
+print("Best score: {}".format(best_key))

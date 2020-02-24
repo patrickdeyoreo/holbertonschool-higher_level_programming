@@ -9,10 +9,6 @@ class Node():
     def __init__(self, data, next_node=None):
         """ Instantiate a node
         """
-        if not isinstance(data, int):
-            raise TypeError("data must be an integer")
-        if next_node is not None and not isinstance(next_node, Node):
-            raise TypeError("next_node must be a Node object")
         self.data, self.next_node = data, next_node
 
     @property
@@ -55,21 +51,7 @@ class SinglyLinkedList():
     def __str__(self):
         """ Generate a visual representation of a list
         """
-        data = list()
-        node = self.__head
-        while node is not None:
-            data.append(node.data)
-            node = node.next_node
-        return "\n".join(map(str, data))
 
     def sorted_insert(self, value):
         """ Inset a Node into a list sorted in ascending order
         """
-        if self.__head is None or value <= self.__head.data:
-            self.__head = Node(value, self.__head)
-        else:
-            prev = self.__head
-            node = prev.next_node
-            while node is not None and value > node.data:
-                prev, node = node, node.next_node
-            prev.next_node = Node(value, node)

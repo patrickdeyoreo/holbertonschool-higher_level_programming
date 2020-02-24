@@ -9,6 +9,8 @@ import turtle
 class Base():
     """Base class for all other classes in this module
     """
+    HEADERS = ('id',)
+
     __nb_objects = 0
 
     def __init__(self, id=None):
@@ -56,9 +58,9 @@ class Base():
     def to_json_string(list_dictionaries):
         """Return a JSON representation a list of dictionaries
         """
-        if list_dictionaries is not None and list_dictionaries:
-            return json.dumps(list_dictionaries)
-        return '[]'
+        if list_dictionaries is None:
+            return '[]'
+        return json.dumps(list_dictionaries)
 
     @classmethod
     def load_from_file(cls):
@@ -78,7 +80,7 @@ class Base():
         try:
             with open("{}.csv".format(cls.__name__), 'r') as ifile:
                 return [cls.create(
-                    **{k: int(v) for k, v in zip(('id',), line.split(','))}
+                    **{k: int(v) for k, v in zip(cls.HEADERS, line.split(','))}
                 ) for line in ifile.readlines()]
         except FileNotFoundError:
             return []
@@ -104,7 +106,7 @@ class Base():
                 for obj in list_objs:
                     obj = obj.to_dictionary()
                     ofile.write(
-                        ','.join(str(obj[key]) for key in ('id',)) + '\n'
+                        ','.join(str(obj[key]) for key in cls.HEADERS) + '\n'
                     )
 
     @classmethod
@@ -126,9 +128,9 @@ class Base():
         """Update the attributes of a base object
         """
         if args:
-            for pair in zip(('id',), args):
+            for pair in zip(self.HEADERS, args):
                 setattr(self, *pair)
         else:
             for key in kwargs:
-                if key in ('id',):
+                if key in self.HEADERS:
                     setattr(self, key, kwargs[key])

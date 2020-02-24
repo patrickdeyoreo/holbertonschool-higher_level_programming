@@ -96,4 +96,4 @@ class Rectangle():
     def square(cls, size=0):
         """ Get a new rectangle with width equal to height
         """
-        return Rectangle(size, size)
+        return cls(size, size)
